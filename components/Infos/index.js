@@ -4,6 +4,45 @@ import { SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import React from 'react'
 
 export const Infos = () => {
+
+    const [Nome, setNome] = useState('');
+    const [Sobrenome, setSobrenome] = useState('');
+    const [Tel, setTel] = useState('');
+    const [Email, setEmail] = useState('');
+    const [Endereco, setEndereco] = useState('');
+    const [DataAniversario, setDataAniversario] = useState('');
+
+    function nomeChanged(Nome) {
+        setNome(Nome);
+    }
+
+    function sobrenomeChanged(Sobrenome){
+        setSobrenome(Sobrenome);
+    }
+
+    function telChanged(Tel){
+        setTel(Tel);
+    }
+
+    function emailChanged(Email){
+        setEmail(Email);
+    }
+
+    function enderecoChanged(Endereco){
+        setEndereco(Endereco);
+    }
+
+    function aniversarioChanged(DataAniversario){
+        setDataAniversario(DataAniversario);
+    }
+
+    
+
+    function botaoPressed(){
+        console.log({id: new Date().getTime() })
+    }
+
+
   return (
     <SafeAreaView style={{paddingTop: -100}}>
         <ScrollView>

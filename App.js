@@ -7,13 +7,13 @@ import { Adicionar } from './components/Adicionar';
 import { Editar } from './components/Editar';
 import { Deletar } from './components/Deletar';
 import { Contato } from './components/Contato';
+import AppTab from './src/AppTab';
 
 export default function App() {
   return (
       <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
-          <Editar/>
-
+          <Adicionar />
         </SafeAreaView>
       </SafeAreaProvider>
   );
