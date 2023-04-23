@@ -51,50 +51,6 @@ export const Infos = ({ type }) => {
     await AsyncStorage.setItem('contatos', JSON.stringify(contatos));
 
   }
-
-<<<<<<< Updated upstream
-export const Infos = () => {
-
-    const [Nome, setNome] = useState('');
-    const [Sobrenome, setSobrenome] = useState('');
-    const [Tel, setTel] = useState('');
-    const [Email, setEmail] = useState('');
-    const [Endereco, setEndereco] = useState('');
-    const [DataAniversario, setDataAniversario] = useState('');
-
-    function nomeChanged(Nome) {
-        setNome(Nome);
-    }
-
-    function sobrenomeChanged(Sobrenome){
-        setSobrenome(Sobrenome);
-    }
-
-    function telChanged(Tel){
-        setTel(Tel);
-    }
-
-    function emailChanged(Email){
-        setEmail(Email);
-    }
-
-    function enderecoChanged(Endereco){
-        setEndereco(Endereco);
-    }
-
-    function aniversarioChanged(DataAniversario){
-        setDataAniversario(DataAniversario);
-    }
-
-    
-
-    function botaoPressed(){
-        console.log({id: new Date().getTime() })
-    }
-
-
-=======
->>>>>>> Stashed changes
   return (
     <>
       <SafeAreaView style={{ paddingTop: -100 }}>

@@ -6,21 +6,12 @@ import { Infos } from './components/Infos';
 import { Adicionar } from './components/Adicionar';
 import { Editar } from './components/Editar';
 import { Contato } from './components/Contato';
-<<<<<<< Updated upstream
-import AppTab from './src/AppTab';
-=======
-import { Botoes } from './components/Botoes';
->>>>>>> Stashed changes
 
 export default function App() {
   return (
       <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
           <Adicionar />
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         </SafeAreaView>
       </SafeAreaProvider>
   );
