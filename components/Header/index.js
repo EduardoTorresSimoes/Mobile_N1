@@ -1,13 +1,20 @@
-import {StatusBar, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from "react-native";
+import {StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import {Feather} from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Header(){
+
+  const navigation = useNavigation();
+
+  function adicionarPressed() {
+    navigation.navigate('Adicionar');
+  }
+
     return (
         <View style={styles.container}>
             <Text style={styles.contatos}>Contatos</Text>
-
             <View style={styles.blocoPesquisa}>
                 <View style={styles.listaPesquisar}>
                     <TouchableOpacity>
@@ -15,7 +22,7 @@ export default function Header(){
                         <TextInput style={styles.pesquisar} placeholder="Pesquisar"></TextInput>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={adicionarPressed}>
                     <AntDesign name="pluscircleo" size={50} color="white" />
                 </TouchableOpacity>
             </View>

@@ -8,8 +8,11 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from "react";
 import { Botoes } from "../Botoes";
 import { useNavigation } from '@react-navigation/native';
+import { useEffect } from "react";
+import ItemContato from "../ItemContato";
 
-export const Infos = ({ type }) => {
+export const InfosPreenchidas = ({ full, type }) => {
+  
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [tel, setTel] = useState("");
@@ -51,6 +54,8 @@ export const Infos = ({ type }) => {
 
     await AsyncStorage.setItem('contatos', JSON.stringify(contatos));
 
+    navigation.navigate('Home');
+
   }
 
   const navigation = useNavigation();
@@ -59,8 +64,46 @@ export const Infos = ({ type }) => {
     navigation.navigate('Editar');
   }
 
+  useEffect(() => {
+    let objeto = route.params
+    if(objeto){
+      setNome(objeto.nome)
+      setSobrenome(objeto.sobrenome)
+      setTel(objeto.tel)
+      setEmail(objeto.email)
+      setEndereco(objeto.endereco)
+      setAniversario(objeto.aniversario)
+    }
+  }, []);
+
   return (
     <>
+    {full == "sim" ? (
+        <SafeAreaView style={{ paddingTop: -100 }}>
+        <ScrollView>
+          <View style={styles.container}>
+            <View style={styles.linha}>
+              
+            </View>
+            <View style={styles.linha}>
+              
+            </View>
+            <View style={styles.linha}>
+             
+            </View>
+            <View style={styles.linha}>
+              
+            </View>
+            <View style={styles.linha}>
+              
+            </View>
+            <View style={styles.linha}>
+              
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    ) : (
       <SafeAreaView style={{ paddingTop: -100 }}>
         <ScrollView>
           <View style={styles.container}>
@@ -110,6 +153,8 @@ export const Infos = ({ type }) => {
         </ScrollView>
       </SafeAreaView>
 
+    )}
+
       {type == "botao" ? (
         <View style={styles.botaoManeiro}>
           <View style={styles.botaoBaixo}>
@@ -128,6 +173,8 @@ export const Infos = ({ type }) => {
       ) : (
         <Botoes onPress={botaoPressed} />
       )}
+
+      
     </>
   );
 };
