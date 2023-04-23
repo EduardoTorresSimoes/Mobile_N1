@@ -21,7 +21,7 @@ export const Editar = () => {
       </View>
       
       <Infos></Infos>
-      <Botoes></Botoes>
+
     </View>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Botoes } from '../Botoes';
 import { View } from 'react-native';
-import { TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { Infos } from '../Infos';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,8 +20,8 @@ export const Adicionar = () => {
         <Ionicons name="person-circle" size={130} color="white" />
       </View>
       
-      <Infos></Infos>
-      <Botoes></Botoes>
+      <Infos/>
+      
     </View>
   )
 }

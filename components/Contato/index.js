@@ -21,18 +21,8 @@ export const Contato = () => {
         <Ionicons name="person-circle" size={130} color="white" />
       </View>
       
-      <Infos></Infos>
+      <Infos type={'botao'}></Infos>
 
-      <View style={styles.botaoManeiro}>
-        <View style={styles.botaoBaixo}>
-            <SimpleLineIcons name="pencil" size={25} color="black" />
-            <TouchableOpacity><Text style={{fontSize: 20}}>Editar</Text></TouchableOpacity>
-        </View>
-        <View style={styles.botaoBaixo}>
-            <Ionicons name="md-trash-sharp" size={25} color="black" />
-            <TouchableOpacity><Text style={{fontSize: 20}}>Excluir</Text></TouchableOpacity>
-        </View>
-      </View>
     </View>
   )
 }
