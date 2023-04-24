@@ -14,31 +14,22 @@ import { useEffect } from "react";
 import ItemContato from "../ItemContato";
 
 export const ContatoDetalhe = (props) => {
-  const [nome, setNome] = useState("");
-  const [sobrenome, setSobrenome] = useState("");
-  const [tel, setTel] = useState("");
-  const [email, setEmail] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [aniversario, setAniversario] = useState("");
-
-  useEffect(() => {
-    if (props) {
-      setNome(props.nome);
-      setSobrenome(props.sobrenome);
-      setTel(props.tel);
-      setEmail(props.email);
-      setEndereco(props.endereco);
-      setAniversario(props.aniversario);
-    }
-  }, []);
+  const [nome, setNome] = useState(props.nome);
+  const [sobrenome, setSobrenome] = useState(props.sobrenome);
+  const [tel, setTel] = useState(props.tel);
+  const [email, setEmail] = useState(props.email);
+  const [endereco, setEndereco] = useState(props.endereco);
+  const [aniversario, setAniversario] = useState(props.aniversario);
 
   return (
     <SafeAreaView style={{ paddingTop: -100 }}>
       <ScrollView>
         <View style={styles.container}>
+            
           <View style={styles.linha}>
             <TextInput value={nome} editable={false}></TextInput>
           </View>
+
           <View style={styles.linha}>
             <TextInput value={sobrenome} editable={false}></TextInput>
           </View>

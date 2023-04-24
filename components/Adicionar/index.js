@@ -2,7 +2,7 @@ import React from "react";
 import { Botoes } from "../Botoes";
 import { View } from "react-native";
 import { TextInput, TouchableOpacity, StyleSheet, Text } from "react-native";
-import { Infos } from "../Infos";
+import { AdicionarDetalhe } from "../AdicionarDetalhe";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -27,7 +27,7 @@ export const Adicionar = () => {
         <Ionicons name="person-circle" size={130} color="white" />
       </View>
 
-      <Infos />
+      <AdicionarDetalhe/>
     </View>
   );
 };

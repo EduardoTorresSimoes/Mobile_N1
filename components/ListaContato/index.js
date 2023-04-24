@@ -1,10 +1,8 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import { ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Infos } from "../Infos";
 import ItemContato from "../ItemContato";
 
 export const ListaContato = () => {

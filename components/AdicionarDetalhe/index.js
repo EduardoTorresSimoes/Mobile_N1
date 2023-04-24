@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";
 
-export const Infos = ({ type }) => {
+export const AdicionarDetalhe = ({ type }) => {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [tel, setTel] = useState("");
@@ -72,13 +72,11 @@ export const Infos = ({ type }) => {
     console.log(contatos);
 
     await AsyncStorage.setItem("contatos", JSON.stringify(contatos));
+
+    navigation.navigate("Home");
   }
 
   const navigation = useNavigation();
-
-  function editarPressed() {
-    navigation.navigate("Editar");
-  }
 
   return (
     <>
@@ -130,25 +128,7 @@ export const Infos = ({ type }) => {
           </View>
         </ScrollView>
       </SafeAreaView>
-
-      {type == "botao" ? (
-        <View style={styles.botaoManeiro}>
-          <View style={styles.botaoBaixo}>
-            <SimpleLineIcons name="pencil" size={25} color="black" />
-            <TouchableOpacity onPress={editarPressed}>
-              <Text style={{ fontSize: 20 }}>Editar</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.botaoBaixo}>
-            <Ionicons name="md-trash-sharp" size={25} color="black" />
-            <TouchableOpacity>
-              <Text style={{ fontSize: 20 }}>Excluir</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      ) : (
-        <Botoes onPress={botaoPressed} />
-      )}
+      <Botoes onPress={botaoPressed} />
     </>
   );
 };
