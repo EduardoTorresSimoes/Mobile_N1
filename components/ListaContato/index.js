@@ -7,7 +7,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Infos } from "../Infos";
 import ItemContato from "../ItemContato";
 
-
 export const ListaContato = () => {
   const [contatos, setContatos] = useState([]);
 
@@ -20,18 +19,16 @@ export const ListaContato = () => {
 
   useEffect(() => {
     getContatos().then((contatos) => setContatos(contatos));
-  }, []);
+  });
 
   return (
     <View style={styles.container}>
-      <ScrollView
-      >
-        {contatos.map(contato => {
+      <ScrollView>
+        {contatos.map((contato) => {
           return (
             <ItemContato
               key={contato.id}
               id={contato.id}
-
               nome={contato.nome}
               sobrenome={contato.sobrenome}
               tel={contato.tel}

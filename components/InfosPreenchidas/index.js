@@ -1,18 +1,23 @@
-import { ScrollView, Text, TextInput, View, TouchableOpacity } from "react-native";
+import {
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SimpleLineIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Botoes } from "../Botoes";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import ItemContato from "../ItemContato";
 
 export const InfosPreenchidas = ({ full, type }) => {
-  
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [tel, setTel] = useState("");
@@ -39,71 +44,60 @@ export const InfosPreenchidas = ({ full, type }) => {
     setAniversario(aniversario);
   }
 
-  async function botaoPressed(){
-    console.log({id: new Date().getTime(), nome, sobrenome, tel, email, endereco, aniversario})
+  async function botaoPressed() {
+    console.log({
+      id: new Date().getTime(),
+      nome,
+      sobrenome,
+      tel,
+      email,
+      endereco,
+      aniversario,
+    });
 
-    const contato = {id: new Date().getTime(), nome, sobrenome, tel, email, endereco, aniversario}
+    const contato = {
+      id: new Date().getTime(),
+      nome,
+      sobrenome,
+      tel,
+      email,
+      endereco,
+      aniversario,
+    };
     let contatos = [];
-    const response = await AsyncStorage.getItem('contatos');
+    const response = await AsyncStorage.getItem("contatos");
 
     if (response) contatos = JSON.parse(response);
 
-    contatos.push(contato); 
+    contatos.push(contato);
 
     console.log(contatos);
 
-    await AsyncStorage.setItem('contatos', JSON.stringify(contatos));
+    await AsyncStorage.setItem("contatos", JSON.stringify(contatos));
 
-    navigation.navigate('Home');
-
+    navigation.navigate("Home");
   }
 
   const navigation = useNavigation();
 
   function editarPressed() {
-    navigation.navigate('Editar');
+    navigation.navigate("Editar");
   }
 
   useEffect(() => {
-    let objeto = route.params
-    if(objeto){
-      setNome(objeto.nome)
-      setSobrenome(objeto.sobrenome)
-      setTel(objeto.tel)
-      setEmail(objeto.email)
-      setEndereco(objeto.endereco)
-      setAniversario(objeto.aniversario)
+    let objeto = route.params;
+    if (objeto) {
+      setNome(objeto.nome);
+      setSobrenome(objeto.sobrenome);
+      setTel(objeto.tel);
+      setEmail(objeto.email);
+      setEndereco(objeto.endereco);
+      setAniversario(objeto.aniversario);
     }
   }, []);
 
   return (
     <>
-    {full == "sim" ? (
-        <SafeAreaView style={{ paddingTop: -100 }}>
-        <ScrollView>
-          <View style={styles.container}>
-            <View style={styles.linha}>
-              
-            </View>
-            <View style={styles.linha}>
-              
-            </View>
-            <View style={styles.linha}>
-             
-            </View>
-            <View style={styles.linha}>
-              
-            </View>
-            <View style={styles.linha}>
-              
-            </View>
-            <View style={styles.linha}>
-              
-            </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    ) : (
       <SafeAreaView style={{ paddingTop: -100 }}>
         <ScrollView>
           <View style={styles.container}>
@@ -153,28 +147,7 @@ export const InfosPreenchidas = ({ full, type }) => {
         </ScrollView>
       </SafeAreaView>
 
-    )}
-
-      {type == "botao" ? (
-        <View style={styles.botaoManeiro}>
-          <View style={styles.botaoBaixo}>
-            <SimpleLineIcons name="pencil" size={25} color="black" />
-            <TouchableOpacity onPress={editarPressed}>
-              <Text style={{ fontSize: 20 }}>Editar</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.botaoBaixo}>
-            <Ionicons name="md-trash-sharp" size={25} color="black" />
-            <TouchableOpacity>
-              <Text style={{ fontSize: 20 }}>Excluir</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      ) : (
-        <Botoes onPress={botaoPressed} />
-      )}
-
-      
+      <Botoes onPress={botaoPressed} />
     </>
   );
 };
@@ -201,19 +174,19 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   botaoManeiro: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   botaoBaixo: {
-      flexDirection: 'row',
-      backgroundColor: 'white',
-      borderRadius: 30,
-      paddingVertical: 15,
-      paddingHorizontal: 15,
-      alignItems: 'center',
-      marginBottom: 100,
-      marginLeft: 20,
-      marginRight: 20,
-  }
+    flexDirection: "row",
+    backgroundColor: "white",
+    borderRadius: 30,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    alignItems: "center",
+    marginBottom: 100,
+    marginLeft: 20,
+    marginRight: 20,
+  },
 });

@@ -7,10 +7,6 @@ import {
 } from "react-native";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SimpleLineIcons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";

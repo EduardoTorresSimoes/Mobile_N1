@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
-import { Botoes } from "../Botoes";
 import { View } from "react-native";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
-import { Infos } from "../Infos";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { InfosPreenchidas } from "../InfosPreenchidas";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState } from "react";
 import { ContatoDetalhe } from "../ContatoDetalhe";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Contato = ({ route }) => {
   const navigation = useNavigation();
@@ -19,6 +14,31 @@ export const Contato = ({ route }) => {
     navigation.navigate("Home");
   }
 
+  function editarPressed() {
+    navigation.navigate("Editar");
+  }
+
+  async function getContatosList() {
+    return AsyncStorage.getItem("contatos").then((response) => {
+      if (response) return Promise.resolve(JSON.parse(response));
+      else return Promise.resolve([]);
+    });
+  }
+
+  const deletarContato = () => {
+    getContatosList().then(async (contatos) => {
+      for (let i = 0; i < contatos.length; i++) {
+        if (contatos[i].id == route.params.id) {
+          contatos.splice(i, 1);
+          break;
+        }
+      }
+      console.log(contatos);
+      await AsyncStorage.setItem("contatos", JSON.stringify(contatos));
+
+      navigation.navigate("Home");
+    });
+  };
   return (
     <View style={styles.container}>
       <View>
@@ -40,6 +60,21 @@ export const Contato = ({ route }) => {
         endereco={route.params.endereco}
         aniversario={route.params.aniversario}
       ></ContatoDetalhe>
+
+      <View style={styles.botaoManeiro}>
+        <View style={styles.botaoBaixo}>
+          <SimpleLineIcons name="pencil" size={25} color="black" />
+          <TouchableOpacity onPress={editarPressed}>
+            <Text style={{ fontSize: 20 }}>Editar</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.botaoBaixo}>
+          <Ionicons name="md-trash-sharp" size={25} color="black" />
+          <TouchableOpacity onPress={deletarContato}>
+            <Text style={{ fontSize: 20 }}>Excluir</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };

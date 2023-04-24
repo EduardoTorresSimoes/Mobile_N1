@@ -5,27 +5,24 @@ import { TextInput, TouchableOpacity, StyleSheet, Text } from "react-native";
 import { Infos } from "../Infos";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 export const Adicionar = () => {
-
   const navigation = useNavigation();
 
   function homePressed() {
-    navigation.navigate('Home');
+    navigation.navigate("Home");
   }
-
 
   return (
     <View style={styles.container}>
-  
       <View>
-        <TouchableOpacity onPress={homePressed} style={styles.barraTop} >
+        <TouchableOpacity onPress={homePressed} style={styles.barraTop}>
           <AntDesign name="arrowleft" size={50} color="white" />
           <Text style={styles.titulo}>Adicionar</Text>
         </TouchableOpacity>
       </View>
-    
+
       <View style={styles.foto}>
         <Ionicons name="person-circle" size={130} color="white" />
       </View>

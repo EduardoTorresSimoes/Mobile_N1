@@ -1,13 +1,19 @@
-import { ScrollView, Text, TextInput, View, TouchableOpacity } from "react-native";
+import {
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SimpleLineIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Botoes } from "../Botoes";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 export const Infos = ({ type }) => {
   const [nome, setNome] = useState("");
@@ -36,27 +42,42 @@ export const Infos = ({ type }) => {
     setAniversario(aniversario);
   }
 
-  async function botaoPressed(){
-    console.log({id: new Date().getTime(), nome, sobrenome, tel, email, endereco, aniversario})
+  async function botaoPressed() {
+    console.log({
+      id: new Date().getTime(),
+      nome,
+      sobrenome,
+      tel,
+      email,
+      endereco,
+      aniversario,
+    });
 
-    const contato = {id: new Date().getTime(), nome, sobrenome, tel, email, endereco, aniversario}
+    const contato = {
+      id: new Date().getTime(),
+      nome,
+      sobrenome,
+      tel,
+      email,
+      endereco,
+      aniversario,
+    };
     let contatos = [];
-    const response = await AsyncStorage.getItem('contatos');
+    const response = await AsyncStorage.getItem("contatos");
 
     if (response) contatos = JSON.parse(response);
 
-    contatos.push(contato); 
+    contatos.push(contato);
 
     console.log(contatos);
 
-    await AsyncStorage.setItem('contatos', JSON.stringify(contatos));
-
+    await AsyncStorage.setItem("contatos", JSON.stringify(contatos));
   }
 
   const navigation = useNavigation();
 
   function editarPressed() {
-    navigation.navigate('Editar');
+    navigation.navigate("Editar");
   }
 
   return (
@@ -154,19 +175,19 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   botaoManeiro: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   botaoBaixo: {
-      flexDirection: 'row',
-      backgroundColor: 'white',
-      borderRadius: 30,
-      paddingVertical: 15,
-      paddingHorizontal: 15,
-      alignItems: 'center',
-      marginBottom: 100,
-      marginLeft: 20,
-      marginRight: 20,
-  }
+    flexDirection: "row",
+    backgroundColor: "white",
+    borderRadius: 30,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    alignItems: "center",
+    marginBottom: 100,
+    marginLeft: 20,
+    marginRight: 20,
+  },
 });
