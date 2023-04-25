@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 export const EditarDetalhe = (props) => {
   const [nome, setNome] = useState("");
@@ -68,6 +69,9 @@ export const EditarDetalhe = (props) => {
     <>
       <SafeAreaView style={{ paddingTop: -100 }}>
         <ScrollView>
+          <View style={styles.foto}>
+            <Ionicons name="person-circle" size={130} color="white" />
+          </View>
           <View style={styles.container}>
             <View style={styles.linha}>
               <TextInput value={nome} onChangeText={nomeChanged}></TextInput>
@@ -106,6 +110,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 25,
     margin: 1,
+  },
+  foto: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   campos: {
     color: "#7b7d7d",

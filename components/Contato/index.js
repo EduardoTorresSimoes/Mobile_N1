@@ -48,10 +48,6 @@ export const Contato = ({ route }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.foto}>
-        <Ionicons name="person-circle" size={130} color="white" />
-      </View>
-
       <ContatoDetalhe
         id={route.params.id}
         nome={route.params.nome}

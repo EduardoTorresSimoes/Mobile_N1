@@ -65,6 +65,7 @@ export const AdicionarDetalhe = ({ type }) => {
   async function botaoPressed() {
     console.log({
       id: new Date().getTime(),
+      imagem,
       nome,
       sobrenome,
       tel,
@@ -75,6 +76,7 @@ export const AdicionarDetalhe = ({ type }) => {
 
     const contato = {
       id: new Date().getTime(),
+      imagem,
       nome,
       sobrenome,
       tel,
@@ -168,6 +170,10 @@ const styles = StyleSheet.create({
     color: "#7b7d7d",
     marginLeft: 5,
     marginTop: 5,
+  },
+  foto: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   linha: {
     marginTop: 1,

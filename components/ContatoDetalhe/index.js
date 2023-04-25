@@ -8,6 +8,7 @@ import {
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
@@ -24,6 +25,9 @@ export const ContatoDetalhe = (props) => {
   return (
     <SafeAreaView style={{ paddingTop: -100 }}>
       <ScrollView>
+        <View style={styles.foto}>
+          <Ionicons name="person-circle" size={130} color="white" />
+        </View>
         <View style={styles.container}>
             
           <View style={styles.linha}>
@@ -66,6 +70,10 @@ const styles = StyleSheet.create({
     color: "#7b7d7d",
     marginLeft: 5,
     marginTop: 5,
+  },
+  foto: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   linha: {
     marginTop: 1,

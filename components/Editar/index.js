@@ -2,7 +2,6 @@ import React from "react";
 import { View } from "react-native";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { EditarDetalhe } from "../EditarDetalhe";
 
@@ -20,10 +19,6 @@ export const Editar = ({ route }) => {
           <AntDesign name="arrowleft" size={50} color="white" />
           <Text style={styles.titulo}>Editar</Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.foto}>
-        <Ionicons name="person-circle" size={130} color="white" />
       </View>
 
       <EditarDetalhe
