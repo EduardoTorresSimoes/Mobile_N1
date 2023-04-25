@@ -5,39 +5,13 @@ import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { EditarDetalhe } from "../EditarDetalhe";
-import { Botoes } from "../Botoes";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Editar = ({ route }) => {
-  const contatoEditado = {id, nome, sobrenome, tel, email, endereco, aniversario};
-
   const navigation = useNavigation();
 
   function contatoPressed() {
     navigation.navigate("Home");
   }
-
-  async function getContatosList() {
-    return AsyncStorage.getItem("contatos").then((response) => {
-      if (response) return Promise.resolve(JSON.parse(response));
-      else return Promise.resolve([]);
-    });
-  }
-
-  const EditarContato = () => {
-    getContatosList().then(async (contatos) => {
-      for (let i = 0; i < contatos.length; i++) {
-        if (contatos[i].id == route.params.id) {
-          contatos[i] = contatoEditado;
-          break;
-        }
-      }
-      console.log(contatos);
-      await AsyncStorage.setItem("contatos", JSON.stringify(contatos));
-
-      navigation.navigate("Home");
-    });
-  };
 
   return (
     <View style={styles.container}>
@@ -60,8 +34,6 @@ export const Editar = ({ route }) => {
         endereco={route.params.endereco}
         aniversario={route.params.aniversario}
       ></EditarDetalhe>
-
-      <Botoes onPress={EditarContato} />
     </View>
   );
 };

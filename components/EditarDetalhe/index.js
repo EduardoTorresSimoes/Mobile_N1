@@ -19,16 +19,50 @@ export const EditarDetalhe = (props) => {
   const [endereco, setEndereco] = useState("");
   const [aniversario, setAniversario] = useState("");
 
-  useEffect(() => {
-    if (props) {
-      setNome(props.nome);
-      setSobrenome(props.sobrenome);
-      setTel(props.tel);
-      setEmail(props.email);
-      setEndereco(props.endereco);
-      setAniversario(props.aniversario);
-    }
-  }, []);
+  function nomeChanged(nome) {
+    setNome(nome);
+  }
+  function sobrenomeChanged(sobrenome) {
+    setSobrenome(sobrenome);
+  }
+  function telChanged(tel) {
+    setTel(tel);
+  }
+  function emailChanged(email) {
+    setEmail(email);
+  }
+  function enderecoChanged(endereco) {
+    setEndereco(endereco);
+  }
+  function aniversarioChanged(aniversario) {
+    setAniversario(aniversario);
+  }
+
+ const navigation = useNavigation();
+
+  async function getContatosList() {
+    return AsyncStorage.getItem("contatos").then((response) => {
+      if (response) return Promise.resolve(JSON.parse(response));
+      else return Promise.resolve([]);
+    });
+  }
+
+  const EditarContato = () => {
+    const contatoEditado = {id: props.id, nome, sobrenome, tel, email, endereco, aniversario};
+
+    getContatosList().then(async (contatos) => {
+      for (let i = 0; i < contatos.length; i++) {
+        if (contatos[i].id == props.id) {
+          contatos[i] = contatoEditado;
+          break;
+        }
+      }
+      console.log(contatos);
+      await AsyncStorage.setItem("contatos", JSON.stringify(contatos));
+
+      navigation.navigate("Home");
+    });
+  };
 
   return (
     <>
@@ -36,31 +70,32 @@ export const EditarDetalhe = (props) => {
         <ScrollView>
           <View style={styles.container}>
             <View style={styles.linha}>
-              <TextInput value={nome} editable={true}></TextInput>
+              <TextInput value={nome} onChangeText={nomeChanged}></TextInput>
             </View>
 
             <View style={styles.linha}>
-              <TextInput value={sobrenome} editable={true}></TextInput>
+              <TextInput value={sobrenome} onChangeText={sobrenomeChanged}></TextInput>
             </View>
 
             <View style={styles.linha}>
-              <TextInput value={tel} editable={true}></TextInput>
+              <TextInput value={tel} onChangeText={telChanged}></TextInput>
             </View>
 
             <View style={styles.linha}>
-              <TextInput value={email} editable={true}></TextInput>
+              <TextInput style={email} onChangeText={emailChanged}></TextInput>
             </View>
 
             <View style={styles.linha}>
-              <TextInput value={endereco} editable={true}></TextInput>
+              <TextInput value={endereco} onChangeText={enderecoChanged}></TextInput>
             </View>
 
             <View style={styles.linha}>
-              <TextInput value={aniversario} editable={true}></TextInput>
+              <TextInput value={aniversario} onChangeText={aniversarioChanged}></TextInput>
             </View>
           </View>
         </ScrollView>
       </SafeAreaView>
+      <Botoes onPress={EditarContato} />
     </>
   );
 };

@@ -15,7 +15,7 @@ export const Contato = ({ route }) => {
   }
 
   function editarPressed() {
-    navigation.navigate("Editar");
+    navigation.navigate("Editar", route.params);
   }
 
   async function getContatosList() {
