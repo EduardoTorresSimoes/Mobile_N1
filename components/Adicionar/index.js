@@ -23,10 +23,6 @@ export const Adicionar = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.foto}>
-        <Ionicons name="person-circle" size={130} color="white" />
-      </View>
-
       <AdicionarDetalhe/>
     </View>
   );

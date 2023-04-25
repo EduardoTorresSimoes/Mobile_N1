@@ -14,8 +14,10 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";
+import * as ImagePicker from 'expo-image-picker';
 
 export const AdicionarDetalhe = ({ type }) => {
+  const [imagem, setImagem] = useState(null)
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [tel, setTel] = useState("");
@@ -40,6 +42,24 @@ export const AdicionarDetalhe = ({ type }) => {
   }
   function aniversarioChanged(aniversario) {
     setAniversario(aniversario);
+  }
+
+  const imagemChanged = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("Você recusou a abrir suas fotos!");
+      return;
+    }
+
+    const response = await ImagePicker.launchImageLibraryAsync({ base64: true, allowsEditing: true, quality: 0.5 });
+
+    console.log(response);
+
+    if (!response.canceled) {
+      setImagem(response.assets[0].uri);
+      console.log(response.assets[0].uri);
+    }
   }
 
   async function botaoPressed() {
@@ -80,6 +100,10 @@ export const AdicionarDetalhe = ({ type }) => {
 
   return (
     <>
+      <TouchableOpacity style={styles.foto} onPress={imagemChanged}>
+        <Ionicons name="person-circle" size={130} color="white" />
+      </TouchableOpacity>
+      
       <SafeAreaView style={{ paddingTop: -100 }}>
         <ScrollView>
           <View style={styles.container}>
