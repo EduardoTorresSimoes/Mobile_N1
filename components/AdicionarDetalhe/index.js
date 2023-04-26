@@ -134,6 +134,7 @@ export const AdicionarDetalhe = ({ type }) => {
                 onChangeText={sobrenomeChanged}
               ></TextInput>
             </View>
+
             <View style={styles.linha}>
               <TextInput
                 style={styles.campos}
@@ -141,6 +142,7 @@ export const AdicionarDetalhe = ({ type }) => {
                 onChangeText={telChanged}
               ></TextInput>
             </View>
+
             <View style={styles.linha}>
               <TextInput
                 style={styles.campos}
@@ -148,6 +150,8 @@ export const AdicionarDetalhe = ({ type }) => {
                 onChangeText={emailChanged}
               ></TextInput>
             </View>
+            
+
             <View style={styles.linha}>
               <TextInput
                 style={styles.campos}
@@ -182,13 +186,6 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginTop: 5,
   },
-  foto: {
-    height: 130,
-    width: 130,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 130/2 
-  },
   linha: {
     marginTop: 1,
     borderBottomColor: "#BBBEBE",
@@ -214,11 +211,17 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
+  foto: {
+    height: 130,
+    width: 130,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 130/2 
+  },
   fotoContainer: {
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
-    
   }
 });

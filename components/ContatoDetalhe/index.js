@@ -13,8 +13,11 @@ import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import ItemContato from "../ItemContato";
+import * as ImagePicker from "expo-image-picker";
+import { Image } from "react-native-web";
 
 export const ContatoDetalhe = (props) => {
+  const [imagem, setImagem] = useState(props.imagem);
   const [nome, setNome] = useState(props.nome);
   const [sobrenome, setSobrenome] = useState(props.sobrenome);
   const [tel, setTel] = useState(props.tel);
@@ -24,10 +27,16 @@ export const ContatoDetalhe = (props) => {
 
   return (
     <SafeAreaView style={{ paddingTop: -100 }}>
+
       <ScrollView>
-        <View style={styles.foto}>
-          <Ionicons name="person-circle" size={130} color="white" />
+        <View style={styles.fotoContainer}>
+            {imagem ? (
+              <Image source={{ uri: imagem }} style={styles.foto} />
+            ) : (
+              <Ionicons name="person-circle" size={130} color="white" />
+            )}
         </View>
+
         <View style={styles.container}>
             
           <View style={styles.linha}>
@@ -100,4 +109,17 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
+  foto: {
+    height: 130,
+    width: 130,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 130/2 
+  },
+  fotoContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+  }
 });

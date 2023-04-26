@@ -23,6 +23,7 @@ export const Editar = ({ route }) => {
 
       <EditarDetalhe
         id={route.params.id}
+        imagem={route.params.imagem}
         nome={route.params.nome}
         sobrenome={route.params.sobrenome}
         tel={route.params.tel}
@@ -33,17 +34,11 @@ export const Editar = ({ route }) => {
   );
 };
 
-Editar.navigationOptions = {
-  title: "Editar",
-  headerStyle: {
-    color: "blue",
-  },
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     gap: 5,
+    backgroundColor: "#260831"
   },
   titulo: {
     fontWeight: "bold",

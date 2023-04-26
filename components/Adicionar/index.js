@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     gap: 5,
+    backgroundColor: "#260831"
   },
   titulo: {
     fontWeight: "bold",

@@ -3,7 +3,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import {  SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState } from "react";
@@ -11,14 +11,39 @@ import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import { Image } from "react-native-web";
 
 export const EditarDetalhe = (props) => {
+  const [imagem, setImagem] = useState(null);
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
   const [endereco, setEndereco] = useState("");
   const [aniversario, setAniversario] = useState("");
+
+  const imagemChanged = async () => {
+    const permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("Você recusou a abrir suas fotos!");
+      return;
+    }
+
+    const response = await ImagePicker.launchImageLibraryAsync({
+      base64: true,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!response.canceled) {
+      setImagem(response.assets[0].uri);
+    } else {
+      alert("Não selecionou foto");
+    }
+  };
 
   function nomeChanged(nome) {
     setNome(nome);
@@ -49,7 +74,7 @@ export const EditarDetalhe = (props) => {
   }
 
   const EditarContato = () => {
-    const contatoEditado = {id: props.id, nome, sobrenome, tel, email, endereco, aniversario};
+    const contatoEditado = {id: props.id, imagem, nome, sobrenome, tel, email, endereco, aniversario};
 
     getContatosList().then(async (contatos) => {
       for (let i = 0; i < contatos.length; i++) {
@@ -69,9 +94,17 @@ export const EditarDetalhe = (props) => {
     <>
       <SafeAreaView style={{ paddingTop: -100 }}>
         <ScrollView>
-          <View style={styles.foto}>
-            <Ionicons name="person-circle" size={130} color="white" />
+
+          <View style={styles.fotoContainer}>
+            <TouchableOpacity onPress={imagemChanged}>
+              {imagem ? (
+                <Image source={{ uri: imagem }} style={styles.foto} />
+              ) : (
+                <Ionicons name="person-circle" size={130} color="white" />
+              )}
+            </TouchableOpacity>
           </View>
+
           <View style={styles.container}>
             <View style={styles.linha}>
               <TextInput value={nome} onChangeText={nomeChanged}></TextInput>
@@ -145,4 +178,17 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
+  foto: {
+    height: 130,
+    width: 130,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 130/2 
+  },
+  fotoContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+  }
 });

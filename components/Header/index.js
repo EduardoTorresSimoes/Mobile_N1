@@ -20,15 +20,17 @@ export default function Header() {
     <View style={styles.container}>
       <Text style={styles.contatos}>Contatos</Text>
       <View style={styles.blocoPesquisa}>
-        <View style={styles.listaPesquisar}>
-          <TouchableOpacity>
-            <Entypo name="magnifying-glass" size={30} color="#BBBEBE" />
-            <TextInput
-              style={styles.pesquisar}
-              placeholder="Pesquisar"
-            ></TextInput>
-          </TouchableOpacity>
-        </View>
+
+        
+        <TouchableOpacity style={styles.listaPesquisar}>
+          <Entypo name="magnifying-glass" size={30} color="#BBBEBE" />
+          <TextInput
+            style={styles.pesquisar}
+            placeholder="Pesquisar"
+          ></TextInput>
+        </TouchableOpacity>
+        
+
         <TouchableOpacity onPress={adicionarPressed}>
           <AntDesign name="pluscircleo" size={50} color="white" />
         </TouchableOpacity>
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     alignItems: "center",
     gap: 10,
-  },
+  },  
   blocoPesquisa: {
     flexDirection: "row",
     justifyContent: "space-between",

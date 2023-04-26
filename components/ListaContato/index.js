@@ -27,6 +27,7 @@ export const ListaContato = () => {
             <ItemContato
               key={contato.id}
               id={contato.id}
+              imagem={contato.imagem}
               nome={contato.nome}
               sobrenome={contato.sobrenome}
               tel={contato.tel}
