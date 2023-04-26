@@ -15,13 +15,13 @@ import * as ImagePicker from "expo-image-picker";
 import { Image } from "react-native-web";
 
 export const EditarDetalhe = (props) => {
-  const [imagem, setImagem] = useState(null);
-  const [nome, setNome] = useState("");
-  const [sobrenome, setSobrenome] = useState("");
-  const [tel, setTel] = useState("");
-  const [email, setEmail] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [aniversario, setAniversario] = useState("");
+  const [imagem, setImagem] = useState(props.imagem);
+  const [nome, setNome] = useState(props.nome);
+  const [sobrenome, setSobrenome] = useState(props.sobrenome);
+  const [tel, setTel] = useState(props.tel);
+  const [email, setEmail] = useState(props.email);
+  const [endereco, setEndereco] = useState(props.endereco);
+  const [aniversario, setAniversario] = useState(props.aniversario);
 
   const imagemChanged = async () => {
     const permissionResult =
@@ -119,7 +119,7 @@ export const EditarDetalhe = (props) => {
             </View>
 
             <View style={styles.linha}>
-              <TextInput style={email} onChangeText={emailChanged}></TextInput>
+              <TextInput value={email} onChangeText={emailChanged}></TextInput>
             </View>
 
             <View style={styles.linha}>

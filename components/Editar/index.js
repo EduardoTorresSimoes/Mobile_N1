@@ -27,6 +27,7 @@ export const Editar = ({ route }) => {
         nome={route.params.nome}
         sobrenome={route.params.sobrenome}
         tel={route.params.tel}
+        email={route.params.email}
         endereco={route.params.endereco}
         aniversario={route.params.aniversario}
       ></EditarDetalhe>
