@@ -14,10 +14,11 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
+import { Image } from "react-native-web";
 
 export const AdicionarDetalhe = ({ type }) => {
-  const [imagem, setImagem] = useState(null)
+  const [imagem, setImagem] = useState(null);
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [tel, setTel] = useState("");
@@ -45,22 +46,26 @@ export const AdicionarDetalhe = ({ type }) => {
   }
 
   const imagemChanged = async () => {
-    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionResult.granted === false) {
       alert("Você recusou a abrir suas fotos!");
       return;
     }
 
-    const response = await ImagePicker.launchImageLibraryAsync({ base64: true, allowsEditing: true, quality: 0.5 });
-
-    console.log(response);
+    const response = await ImagePicker.launchImageLibraryAsync({
+      base64: true,
+      allowsEditing: true,
+      quality: 1,
+    });
 
     if (!response.canceled) {
       setImagem(response.assets[0].uri);
-      console.log(response.assets[0].uri);
+    } else {
+      alert("Não selecionou foto");
     }
-  }
+  };
 
   async function botaoPressed() {
     console.log({
@@ -102,10 +107,16 @@ export const AdicionarDetalhe = ({ type }) => {
 
   return (
     <>
-      <TouchableOpacity style={styles.foto} onPress={imagemChanged}>
-        <Ionicons name="person-circle" size={130} color="white" />
-      </TouchableOpacity>
-      
+      <View style={styles.fotoContainer}>
+        <TouchableOpacity onPress={imagemChanged}>
+          {imagem ? (
+            <Image source={{ uri: imagem }} style={styles.foto} />
+          ) : (
+            <Ionicons name="person-circle" size={130} color="white" />
+          )}
+        </TouchableOpacity>
+      </View>
+
       <SafeAreaView style={{ paddingTop: -100 }}>
         <ScrollView>
           <View style={styles.container}>
@@ -172,8 +183,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   foto: {
+    height: 130,
+    width: 130,
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 130/2 
   },
   linha: {
     marginTop: 1,
@@ -200,4 +214,11 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
+  fotoContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    
+  }
 });
