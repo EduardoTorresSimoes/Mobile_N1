@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import { Image } from "react-native-web";
+import { Image } from "react-native";
 
 export const EditarDetalhe = (props) => {
   const [imagem, setImagem] = useState(props.imagem);

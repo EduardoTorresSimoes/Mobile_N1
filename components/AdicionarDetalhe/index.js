@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { Botoes } from "../Botoes";
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
-import { Image } from "react-native-web";
+import { Image } from "react-native";
 
 export const AdicionarDetalhe = ({ type }) => {
   const [imagem, setImagem] = useState(null);

@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import ItemContato from "../ItemContato";
 import * as ImagePicker from "expo-image-picker";
-import { Image } from "react-native-web";
+import { Image } from "react-native";
 
 export const ContatoDetalhe = (props) => {
   const [imagem, setImagem] = useState(props.imagem);
